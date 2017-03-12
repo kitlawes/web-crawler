@@ -1,0 +1,3 @@
+http://www.domain.com/image.jpg
+http://www.domain.com/javascript.js
+http://www.domain.com/stylesheet.css

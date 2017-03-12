@@ -37,3 +37,6 @@ class WebCrawler:
                     link = "/" + link
                 same_subdomain_addresses.append(subdomain + link)
         return same_subdomain_addresses
+
+    def get_assets(self, same_subdomain_addresses):
+        pass
