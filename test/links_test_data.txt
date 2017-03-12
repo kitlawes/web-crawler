@@ -1,12 +1,8 @@
 /
 /page
 page
-www.domain.com/
-www.domain.com
 http://www.domain.com/
 http://www.domain.com
-subdomain.domain.com/
-subdomain.domain.com
 http://subdomain.domain.com/
 http://subdomain.domain.com
 stylesheet.css

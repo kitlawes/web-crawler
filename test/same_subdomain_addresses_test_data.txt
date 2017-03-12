@@ -3,6 +3,4 @@ http://www.domain.com/page
 http://www.domain.com/page
 http://www.domain.com/
 http://www.domain.com/
-http://www.domain.com/
-http://www.domain.com/
 http://www.domain.com/stylesheet.css
