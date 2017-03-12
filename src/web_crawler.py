@@ -1,4 +1,9 @@
+import urllib2
+
 class WebCrawler:
 
     def get_html(self, url):
-        pass
+        html = []
+        for line in urllib2.urlopen(url):
+            html.append(line)
+        return html
