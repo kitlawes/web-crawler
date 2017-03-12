@@ -5,7 +5,7 @@ class WebCrawler:
     def get_html(self, url):
         html = []
         for line in urllib2.urlopen(url):
-            html.append(line)
+            html.append(line.rstrip('\n'))
         return html
 
     def get_links(self, html):
