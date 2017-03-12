@@ -15,21 +15,25 @@ class WebCrawler:
                 start = line.index("href=\"") + len("href=\"")
                 end = line.index("\"", start)
                 links.append(line[start: end])
+            if "src=\"" in line:
+                start = line.index("src=\"") + len("src=\"")
+                end = line.index("\"", start)
+                links.append(line[start: end])
         return links
 
     def get_same_subdomain_addresses(self, subdomain, links):
         if not subdomain.startswith("http://"):
             subdomain = "http://" + subdomain
-        if not subdomain.endswith("/"):
-            subdomain = subdomain + "/"
+        if subdomain.endswith("/"):
+            subdomain = subdomain.rstrip("/")
         same_subdomain_addresses = []
         for link in links:
-            if not link.endswith("/"):
-                link = link + "/"
+            if link.endswith("/"):
+                link = link.rstrip("/")
             if link.startswith(subdomain):
                 same_subdomain_addresses.append(link)
             elif not link.startswith("http://"):
-                if link.startswith("/"):
-                    link = link[1:]
+                if link != "" and not link.startswith("/"):
+                    link = "/" + link
                 same_subdomain_addresses.append(subdomain + link)
         return same_subdomain_addresses
