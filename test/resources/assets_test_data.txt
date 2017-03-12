@@ -1,3 +1,5 @@
 http://www.domain.com/image.jpg
+http://www.domain.com/image.ico
+http://www.domain.com/image.gif
 http://www.domain.com/javascript.js
 http://www.domain.com/stylesheet.css

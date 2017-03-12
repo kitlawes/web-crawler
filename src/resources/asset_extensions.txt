@@ -1,5 +1,5 @@
 .jpg
-.js
-.css
 .ico
 .gif
+.js
+.css

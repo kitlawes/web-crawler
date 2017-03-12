@@ -79,6 +79,8 @@ class WebCrawler:
             if link.startswith("https://"):
                 link = link.lstrip("https://")
                 link = "http://" + link
+            if link.startswith("//"):
+                link = "http:" + link
             if link.startswith(subdomain):
                 same_subdomain_addresses.append(link)
             elif not link.startswith("http://"):
