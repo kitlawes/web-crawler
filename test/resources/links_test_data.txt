@@ -3,8 +3,12 @@
 page
 http://www.domain.com/
 http://www.domain.com
+https://www.domain.com/
+https://www.domain.com
 http://subdomain.domain.com/
 http://subdomain.domain.com
+https://subdomain.domain.com/
+https://subdomain.domain.com
 image.jpg
 javascript.js
 stylesheet.css
