@@ -40,15 +40,32 @@ class WebCrawler:
         return same_subdomain_addresses
 
     def get_assets(self, same_subdomain_addresses):
-        asset_extensions = []
-        file_path = os.path.join(os.path.dirname(__file__), 'resources', 'asset_extensions.txt')
-        with open(file_path, 'r') as file:
-            for line in file:
-                asset_extensions.append(line.rstrip('\n'))
         assets = []
+        asset_extensions = self.get_asset_extensions()
         for same_subdomain_address in same_subdomain_addresses:
             for asset_extension in asset_extensions:
                 if same_subdomain_address.endswith(asset_extension):
                     assets.append(same_subdomain_address)
                     break
         return assets
+
+    def get_web_pages(self, same_subdomain_addresses):
+        web_pages = []
+        asset_extensions = self.get_asset_extensions()
+        for same_subdomain_address in same_subdomain_addresses:
+            is_web_page = True
+            for asset_extension in asset_extensions:
+                if same_subdomain_address.endswith(asset_extension):
+                    is_web_page = False
+                    break
+            if is_web_page:
+                web_pages.append(same_subdomain_address)
+        return web_pages
+
+    def get_asset_extensions(self):
+        asset_extensions = []
+        file_path = os.path.join(os.path.dirname(__file__), 'resources', 'asset_extensions.txt')
+        with open(file_path, 'r') as file:
+            for line in file:
+                asset_extensions.append(line.rstrip('\n'))
+        return asset_extensions
