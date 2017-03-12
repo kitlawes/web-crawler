@@ -18,10 +18,18 @@ class WebCrawler:
         return links
 
     def get_same_subdomain_addresses(self, subdomain, links):
+        if not subdomain.startswith("http://"):
+            subdomain = "http://" + subdomain
+        if not subdomain.endswith("/"):
+            subdomain = subdomain + "/"
         same_subdomain_addresses = []
         for link in links:
-            if link.startswith("/"):
-                same_subdomain_addresses.append(subdomain.rstrip('/') + link)
+            if not link.endswith("/"):
+                link = link + "/"
             if link.startswith(subdomain):
                 same_subdomain_addresses.append(link)
+            elif not link.startswith("http://"):
+                if link.startswith("/"):
+                    link = link[1:]
+                same_subdomain_addresses.append(subdomain + link)
         return same_subdomain_addresses
