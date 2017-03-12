@@ -1,5 +1,6 @@
 import urllib2
 import os
+import json
 
 class WebCrawler:
     
@@ -19,7 +20,9 @@ class WebCrawler:
 
         urlsToVisit = [url]
         urlsVisted = []
-        while (len(urlsToVisit) > 0):
+        output = []
+        while (len(urlsToVisit) > 0 and len(urlsVisted) < 10):
+            
             url = urlsToVisit.pop(0)
             urlsVisted.append(url)
 
@@ -29,14 +32,13 @@ class WebCrawler:
             assets = self.get_assets(same_subdomain_addresses)
             web_pages = self.get_web_pages(same_subdomain_addresses)
     
-            print url
-            for asset in assets:
-                print asset
-            print ""
+            output.append({"url":url,"assets":assets})
     
             for web_page in web_pages:
                 if not web_page in urlsToVisit and not web_page in urlsVisted:
                     urlsToVisit.append(web_page)
+                    
+        print json.dumps(output, indent=4)
 
     def get_html(self, url):
         html = []
