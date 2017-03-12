@@ -32,6 +32,13 @@ class WebCrawlerSpec(unittest.TestCase):
         actual_assets = web_crawler.get_assets(same_subdomain_addresses)
         self.assertEqual(expected_assets, actual_assets)
 
+    def test_get_web_pages(self):
+        expected_web_pages = self.get_file_contents("web_pages_test_data.txt")
+        web_crawler = WebCrawler()
+        same_subdomain_addresses = self.get_file_contents("same_subdomain_addresses_test_data.txt")
+        actual_web_pages = web_crawler.get_web_pages(same_subdomain_addresses)
+        self.assertEqual(expected_web_pages, actual_web_pages)
+
     def get_file_contents(self, file_name):
         file_contents = []
         file_path = os.path.join(os.path.dirname(__file__), 'resources', file_name)
