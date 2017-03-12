@@ -1,4 +1,5 @@
 import urllib2
+import os
 
 class WebCrawler:
 
@@ -39,4 +40,15 @@ class WebCrawler:
         return same_subdomain_addresses
 
     def get_assets(self, same_subdomain_addresses):
-        pass
+        asset_extensions = []
+        file_path = os.path.join(os.path.dirname(__file__), 'resources', 'asset_extensions.txt')
+        with open(file_path, 'r') as file:
+            for line in file:
+                asset_extensions.append(line.rstrip('\n'))
+        assets = []
+        for same_subdomain_address in same_subdomain_addresses:
+            for asset_extension in asset_extensions:
+                if same_subdomain_address.endswith(asset_extension):
+                    assets.append(same_subdomain_address)
+                    break
+        return assets

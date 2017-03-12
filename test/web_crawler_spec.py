@@ -1,5 +1,6 @@
 import unittest
 from src.web_crawler import WebCrawler
+import os
 
 class WebCrawlerSpec(unittest.TestCase):
 
@@ -25,7 +26,7 @@ class WebCrawlerSpec(unittest.TestCase):
         self.assertEqual(expected_same_subdomain_addresses, actual_same_subdomain_addresses)
 
     def test_get_assets(self):
-        expected_assets = self.get_file_contents("same_subdomain_addresses_test_data.txt")
+        expected_assets = self.get_file_contents("assets_test_data.txt")
         web_crawler = WebCrawler()
         same_subdomain_addresses = self.get_file_contents("same_subdomain_addresses_test_data.txt")
         actual_assets = web_crawler.get_assets(same_subdomain_addresses)
@@ -33,7 +34,8 @@ class WebCrawlerSpec(unittest.TestCase):
 
     def get_file_contents(self, file_name):
         file_contents = []
-        with open(file_name, 'r') as file:
+        file_path = os.path.join(os.path.dirname(__file__), 'resources', file_name)
+        with open(file_path, 'r') as file:
             for line in file:
                 file_contents.append(line.rstrip('\n'))
         return file_contents
