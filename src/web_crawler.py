@@ -2,11 +2,48 @@ import urllib2
 import os
 
 class WebCrawler:
+    
+    def crawl(self, url):
+        if not url.startswith("http://"):
+            url = "http://" + url
+        if url.endswith("/"):
+            url = url.rstrip("/")
+        subdomain = url
+        end = subdomain.find("/", len("http://"))
+        if end != -1:
+            subdomain = subdomain[:end]
+        self.crawl_urls_to_visit(subdomain, [url], [])
+        
+    def crawl_urls_to_visit(self, subdomain, urlsToVisit, urlsVisted):
+        
+        url = urlsToVisit.pop(0)
+        urlsVisted.append(url)
+        
+        html = self.get_html(url)
+        links = self.get_links(html)
+        same_subdomain_addresses = self.get_same_subdomain_addresses(subdomain, links)
+        assets = self.get_assets(same_subdomain_addresses)
+        web_pages = self.get_web_pages(same_subdomain_addresses)
+        
+        print url
+        for asset in assets:
+            print asset
+        print ""
+        
+        for web_page in web_pages:
+            if not web_page in urlsToVisit and not web_page in urlsVisted:
+                urlsToVisit.append(web_page)
+        
+        if len(urlsToVisit.leng) > 0:
+            self.crawl_urls_to_visit(subdomain, urlsToVisit, urlsVisted)
 
     def get_html(self, url):
         html = []
-        for line in urllib2.urlopen(url):
-            html.append(line.rstrip('\n'))
+        try:
+            for line in urllib2.urlopen(url):
+                html.append(line.rstrip('\n'))
+        except urllib2.HTTPError as err:
+            pass
         return html
 
     def get_links(self, html):
@@ -69,3 +106,7 @@ class WebCrawler:
             for line in file:
                 asset_extensions.append(line.rstrip('\n'))
         return asset_extensions
+
+if __name__ == '__main__':
+    web_crawler = WebCrawler()
+    web_crawler.crawl("http://quotes.toscrape.com/")
