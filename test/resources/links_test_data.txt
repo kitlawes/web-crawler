@@ -12,3 +12,4 @@ https://subdomain.domain.com
 image.jpg
 javascript.js
 stylesheet.css
+image.jpg

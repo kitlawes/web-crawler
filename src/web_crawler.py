@@ -21,7 +21,7 @@ class WebCrawler:
         urlsToVisit = [url]
         urlsVisted = []
         output = []
-        while (len(urlsToVisit) > 0 and len(urlsVisted) < 10):
+        while (len(urlsToVisit) > 0):
             
             url = urlsToVisit.pop(0)
             urlsVisted.append(url)
@@ -33,9 +33,10 @@ class WebCrawler:
             web_pages = self.get_web_pages(same_subdomain_addresses)
     
             output.append({"url":url,"assets":assets})
+            print json.dumps({"url":url,"assets":assets}, indent=4)
     
             for web_page in web_pages:
-                if not web_page in urlsToVisit and not web_page in urlsVisted:
+                if not web_page in urlsToVisit and web_page not in urlsVisted:
                     urlsToVisit.append(web_page)
                     
         print json.dumps(output, indent=4)
@@ -92,7 +93,8 @@ class WebCrawler:
         for same_subdomain_address in same_subdomain_addresses:
             for asset_extension in asset_extensions:
                 if same_subdomain_address.endswith(asset_extension):
-                    assets.append(same_subdomain_address)
+                    if  same_subdomain_address not in assets:
+                        assets.append(same_subdomain_address)
                     break
         return assets
 
@@ -105,7 +107,7 @@ class WebCrawler:
                 if same_subdomain_address.endswith(asset_extension):
                     is_web_page = False
                     break
-            if is_web_page:
+            if is_web_page and same_subdomain_address not in web_pages:
                 web_pages.append(same_subdomain_address)
         return web_pages
 
@@ -119,4 +121,4 @@ class WebCrawler:
 
 if __name__ == '__main__':
     web_crawler = WebCrawler()
-    web_crawler.crawl("http://quotes.toscrape.com/")
+    web_crawler.crawl("https://www.youtube.com/")
