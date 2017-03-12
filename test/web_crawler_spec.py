@@ -16,6 +16,14 @@ class WebCrawlerSpec(unittest.TestCase):
         actual_links = web_crawler.get_links(quotes_to_scrape_html)
         self.assertEqual(expected_links, actual_links)
 
+    def test_get_same_subdomain_addresses_from_links(self):
+        expected_same_subdomain_addresses = self.get_file_contents("quotes_to_scrape_same_subdomain_addresses.txt")
+        web_crawler = WebCrawler()
+        subdomain = "http://quotes.toscrape.com/"
+        quotes_to_scrape_links = self.get_file_contents("quotes_to_scrape_links.txt")
+        actual_same_subdomain_addresses = web_crawler.get_same_subdomain_addresses_from_links(subdomain, quotes_to_scrape_links)
+        self.assertEqual(expected_same_subdomain_addresses, actual_same_subdomain_addresses)
+
     def get_file_contents(self, file_name):
         file_contents = []
         with open(file_name, 'r') as file:

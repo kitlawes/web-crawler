@@ -16,3 +16,6 @@ class WebCrawler:
                 end = line.index("\"", start)
                 links.append(line[start: end])
         return links
+
+    def get_same_subdomain_addresses_from_links(self, links, subdomain):
+        pass
