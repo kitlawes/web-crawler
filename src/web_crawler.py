@@ -4,11 +4,14 @@ import os
 class WebCrawler:
     
     def crawl(self, url):
-        
+
+        if url.startswith("https://"):
+            url = url.lstrip("https://")
         if not url.startswith("http://"):
             url = "http://" + url
         if url.endswith("/"):
             url = url.rstrip("/")
+        
         subdomain = url
         end = subdomain.find("/", len("http://"))
         if end != -1:
@@ -58,14 +61,21 @@ class WebCrawler:
         return links
 
     def get_same_subdomain_addresses(self, subdomain, links):
+        
+        if subdomain.startswith("https://"):
+            subdomain =  subdomain.lstrip("https://")
         if not subdomain.startswith("http://"):
             subdomain = "http://" + subdomain
         if subdomain.endswith("/"):
             subdomain = subdomain.rstrip("/")
+            
         same_subdomain_addresses = []
         for link in links:
             if link.endswith("/"):
                 link = link.rstrip("/")
+            if link.startswith("https://"):
+                link = link.lstrip("https://")
+                link = "http://" + link
             if link.startswith(subdomain):
                 same_subdomain_addresses.append(link)
             elif not link.startswith("http://"):
