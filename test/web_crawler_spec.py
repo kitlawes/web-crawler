@@ -2,9 +2,9 @@ import unittest
 from src.web_crawler import WebCrawler
 
 class WebCrawlerSpec(unittest.TestCase):
-    
+
     def test_get_html(self):
-        
+
         expected_html = []
         with open("quotes_to_scrape.html", 'r') as file:
             for line in file:
@@ -14,3 +14,10 @@ class WebCrawlerSpec(unittest.TestCase):
         actual_html = web_crawler.get_html("http://quotes.toscrape.com/")
 
         self.assertEqual(expected_html, actual_html)
+
+    def test_get_links(self):
+        expected_links = ["/test"]
+        web_crawler = WebCrawler()
+        html = ["<a href=\"/test\">test</a>"]
+        actual_links = web_crawler.get_links(html)
+        self.assertEqual(expected_links, actual_links)
