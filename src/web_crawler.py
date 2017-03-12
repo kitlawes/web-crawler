@@ -1,2 +1,4 @@
-if __name__ == '__main__':
-    print "Hello World!"
+class WebCrawler:
+
+    def get_html(self, url):
+        pass
