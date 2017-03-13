@@ -4,6 +4,20 @@ import os
 
 class WebCrawlerSpec(unittest.TestCase):
 
+    def get_html(self, url):
+        if url == "http://www.domain.com":
+            html_test_data = self.get_file_contents("html_test_data.html")
+            return html_test_data
+        else:
+            return ""
+
+    def test_crawl(self):
+        expected_result = self.get_file_contents("crawl_test_data.txt")
+        web_crawler = WebCrawler()
+        web_crawler.get_html = lambda url: self.get_html(url)
+        actual_result = web_crawler.crawl("http://www.domain.com")
+        self.assertEqual(expected_result, actual_result)
+
     def test_get_html(self):
         expected_html = self.get_file_contents("example.html")
         web_crawler = WebCrawler()
@@ -13,8 +27,8 @@ class WebCrawlerSpec(unittest.TestCase):
     def test_get_links(self):
         expected_links = self.get_file_contents("links_test_data.txt")
         web_crawler = WebCrawler()
-        quotes_to_scrape_html = self.get_file_contents("html_test_data.html")
-        actual_links = web_crawler.get_links(quotes_to_scrape_html)
+        html_test_data = self.get_file_contents("html_test_data.html")
+        actual_links = web_crawler.get_links(html_test_data)
         self.assertEqual(expected_links, actual_links)
 
     def test_get_same_subdomain_addresses(self):

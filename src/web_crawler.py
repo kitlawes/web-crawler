@@ -38,8 +38,8 @@ class WebCrawler:
             for web_page in web_pages:
                 if not web_page in urlsToVisit and web_page not in urlsVisted:
                     urlsToVisit.append(web_page)
-                    
-        print json.dumps(output, indent=4)
+        
+        return json.dumps(output, indent=4).splitlines()
 
     def get_html(self, url):
         html = []
@@ -123,4 +123,6 @@ class WebCrawler:
 
 if __name__ == '__main__':
     web_crawler = WebCrawler()
-    web_crawler.crawl("https://www.youtube.com/")
+    result = web_crawler.crawl("https://www.youtube.com/")
+    for line in result:
+        print line
