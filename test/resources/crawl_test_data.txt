@@ -9,7 +9,8 @@
             "http://www.domain.com/javascript.js", 
             "http://www.domain.com/stylesheet.css", 
             "http://www.domain.com/image_1.jpg", 
-            "http://www.domain.com/image_2.jpg"
+            "http://www.domain.com/image_2.jpg", 
+            "http://www.domain.com/image_3.jpg"
         ]
     }, 
     {

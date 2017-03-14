@@ -6,8 +6,6 @@ http://www.domain.com/
 https://www.domain.com
 //www.domain.com
 http://subdomain.domain.com
-http://www.domain.com
-http://www.domain.com
 image.jpg
 image.ico
 image.gif
@@ -15,5 +13,9 @@ image.png
 javascript.js
 stylesheet.css
 image.jpg
+http://www.domain.com
+http://www.domain.com
 image_1.jpg
 image_2.jpg
+http://www.domain.com
+image_3.jpg

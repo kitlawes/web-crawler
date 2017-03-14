@@ -59,13 +59,19 @@ class WebCrawler:
             link_found = True
             while link_found:
                 link_found = False
+                start = len(line)
+                end = len(line)
                 for attribute in attributes:
                     if attribute in line:
-                        start = line.index(attribute) + len(attribute)
-                        end = line.index("\"", start)
-                        links.append(line[start: end])
                         link_found = True
-                        line = line[end:]
+                        attribute_start = line.index(attribute) + len(attribute)
+                        attribute_end = line.index("\"", attribute_start)
+                        if attribute_start < start:
+                            start = attribute_start
+                            end = attribute_end
+                if link_found:
+                    links.append(line[start:end])
+                    line = line[end:]
         return links
 
     def get_same_subdomain_addresses(self, subdomain, links):
@@ -131,5 +137,3 @@ class WebCrawler:
 if __name__ == '__main__':
     web_crawler = WebCrawler()
     result = web_crawler.crawl("youtube.com")
-    for line in result:
-        print line
