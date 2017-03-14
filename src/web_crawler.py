@@ -10,6 +10,8 @@ class WebCrawler:
             url = url.lstrip("https://")
         if not url.startswith("http://"):
             url = "http://" + url
+        if not url.startswith("http://www."):
+            url = "http://www." + url.lstrip("http://")
         if url.endswith("/"):
             url = url.rstrip("/")
         
@@ -72,6 +74,8 @@ class WebCrawler:
             subdomain =  subdomain.lstrip("https://")
         if not subdomain.startswith("http://"):
             subdomain = "http://" + subdomain
+        if not subdomain.startswith("http://www."):
+            subdomain = "http://www." + subdomain.lstrip("http://")
         if subdomain.endswith("/"):
             subdomain = subdomain.rstrip("/")
             
@@ -126,6 +130,6 @@ class WebCrawler:
 
 if __name__ == '__main__':
     web_crawler = WebCrawler()
-    result = web_crawler.crawl("https://www.youtube.com/")
+    result = web_crawler.crawl("youtube.com")
     for line in result:
         print line
