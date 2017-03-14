@@ -4,3 +4,7 @@
 .png
 .js
 .css
+.docx
+.pdf
+.xlsx
+.svg

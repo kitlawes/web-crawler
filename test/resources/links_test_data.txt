@@ -12,6 +12,10 @@ image.gif
 image.png
 javascript.js
 stylesheet.css
+document.docx
+document.pdf
+spreadsheet.xlsx
+image.svg
 image.jpg
 http://www.domain.com
 http://www.domain.com

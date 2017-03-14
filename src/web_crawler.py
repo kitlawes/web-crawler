@@ -35,7 +35,7 @@ class WebCrawler:
             web_pages = self.get_web_pages(same_subdomain_addresses)
     
             output.append({"url":url,"assets":assets})
-            print json.dumps({"url":url,"assets":assets}, indent=4)
+            # print json.dumps({"url":url,"assets":assets}, indent=4)
     
             for web_page in web_pages:
                 if not web_page in urlsToVisit and web_page not in urlsVisted:
@@ -136,4 +136,6 @@ class WebCrawler:
 
 if __name__ == '__main__':
     web_crawler = WebCrawler()
-    result = web_crawler.crawl("youtube.com")
+    result = web_crawler.crawl("https://www.gocardless.com/")
+    for line in result:
+        print line

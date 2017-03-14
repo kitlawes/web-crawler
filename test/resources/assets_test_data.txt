@@ -4,6 +4,10 @@ http://www.domain.com/image.gif
 http://www.domain.com/image.png
 http://www.domain.com/javascript.js
 http://www.domain.com/stylesheet.css
+http://www.domain.com/document.docx
+http://www.domain.com/document.pdf
+http://www.domain.com/spreadsheet.xlsx
+http://www.domain.com/image.svg
 http://www.domain.com/image_1.jpg
 http://www.domain.com/image_2.jpg
 http://www.domain.com/image_3.jpg
