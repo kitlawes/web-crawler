@@ -4,19 +4,19 @@ import os
 
 class WebCrawlerSpec(unittest.TestCase):
 
-    def get_html(self, url):
+    def test_crawl(self):
+        expected_result = self.get_file_contents("crawl_test_data.txt")
+        web_crawler = WebCrawler()
+        web_crawler.get_html = lambda url: self.mock_get_html(url)
+        actual_result = web_crawler.crawl("http://www.domain.com")
+        self.assertEqual(expected_result, actual_result)
+
+    def mock_get_html(self, url):
         if url == "http://www.domain.com":
             html_test_data = self.get_file_contents("html_test_data.html")
             return html_test_data
         else:
             return ""
-
-    def test_crawl(self):
-        expected_result = self.get_file_contents("crawl_test_data.txt")
-        web_crawler = WebCrawler()
-        web_crawler.get_html = lambda url: self.get_html(url)
-        actual_result = web_crawler.crawl("http://www.domain.com")
-        self.assertEqual(expected_result, actual_result)
 
     def test_get_html(self):
         expected_html = self.get_file_contents("example.html")

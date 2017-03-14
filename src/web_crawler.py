@@ -52,15 +52,18 @@ class WebCrawler:
 
     def get_links(self, html):
         links = []
+        attributes = ["href=\"", "src=\""]
         for line in html:
-            if "href=\"" in line:
-                start = line.index("href=\"") + len("href=\"")
-                end = line.index("\"", start)
-                links.append(line[start: end])
-            if "src=\"" in line:
-                start = line.index("src=\"") + len("src=\"")
-                end = line.index("\"", start)
-                links.append(line[start: end])
+            link_found = True
+            while link_found:
+                link_found = False
+                for attribute in attributes:
+                    if attribute in line:
+                        start = line.index(attribute) + len(attribute)
+                        end = line.index("\"", start)
+                        links.append(line[start: end])
+                        link_found = True
+                        line = line[end:]
         return links
 
     def get_same_subdomain_addresses(self, subdomain, links):
