@@ -12,6 +12,7 @@
             "http://www.domain.com/document.pdf", 
             "http://www.domain.com/spreadsheet.xlsx", 
             "http://www.domain.com/image.svg", 
+            "http://www.domain.com/data.json", 
             "http://www.domain.com/image_1.jpg", 
             "http://www.domain.com/image_2.jpg", 
             "http://www.domain.com/image_3.jpg"

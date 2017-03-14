@@ -15,6 +15,7 @@ http://www.domain.com/document.docx
 http://www.domain.com/document.pdf
 http://www.domain.com/spreadsheet.xlsx
 http://www.domain.com/image.svg
+http://www.domain.com/data.json
 http://www.domain.com/image.jpg
 http://www.domain.com
 http://www.domain.com
